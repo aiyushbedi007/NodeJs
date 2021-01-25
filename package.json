@@ -1,0 +1,25 @@
+{
+  "name": "enquiry",
+  "version": "1.0.0",
+  "description": "Node Exam Enquiry Management System (EMS)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Aiyush Bedi",
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.11.13"
+  },
+  "devDependencies": {}
+}
