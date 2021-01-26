@@ -4,22 +4,82 @@
 <body>
   <%- include("./partials/nav.ejs") %>
 
-  <div class="blogs content">
-    <h2>All Blogs</h2>
+  <div class="blogs container content">
+    <h2>All Enquires</h2>
 
+    <form class="search">
+      <input class="form-control mb-4" id="tableSearch" type="text" placeholder="Search..." />
+    </form>
+
+    <table id="tblList" class="table table-bordered table-striped table-hover">
+      <thead>  
+        <tr>  
+        <th>S.No</th>  
+        <th>Title</th>  
+        <th>Course Name</th>  
+        <th>Raised by</th>
+        <th colspan="2">Action</th>  
+       </tr>  
+     </thead>  
+     <tbody id='myTable'>
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
-        <a class="single" href="/blogs/<%= blog._id %>">
-          <h3 class="title"><%= blog.title %></h3>
-          <p class="snippet"><%= blog.snippet %></p>
-        </a>
+        <tr>
+          <td> 1</td>   
+         	<td><a href="/blogs/<%= blog._id %>"><%= blog.title %></a></td>  
+         	<td class="snippet">  <%= blog.snippet %> </td>    
+          <td>  Username  </td>
+          <td><a class="edit" data-doc="<%= blog._id %>"><img src="/edit.svg" alt="edit icon"></a></td>
+          <td><a class="delete" data-doc="<%= blog._id %>"><img src="/trashcan.svg" alt="delete icon"></a></td>      
+        </tr>
       <% }) %>
     <% } else { %>
       <p>There are no Enquires to display...</p>
     <% } %>
+    </tbody>
+    </table>
     
   </div>
 
   <%- include("./partials/footer.ejs") %>
 </body>
 </html>
+<script>
+  //Dynamic Search in table columns
+$(document).ready(function(){
+    $("#tableSearch").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+<script>
+  const trashcan = document.querySelector('a.delete');
+
+  trashcan.addEventListener('click', (e) => {
+    const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+    fetch(endpoint, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+  });
+
+  const edit = document.querySelector('a.edit');
+
+  edit.addEventListener('click', (e) => {
+  const endpoint = `/blogs/${trashcan.dataset.doc}/edit`;
+
+  fetch(endpoint, {
+    method: 'GET',
+  })
+  .then(response => response.json())
+  .then(data => window.location.href = data.redirect)
+  .catch(err => console.log(err));
+});
+  
+</script>
