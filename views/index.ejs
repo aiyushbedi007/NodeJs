@@ -72,14 +72,7 @@ $(document).ready(function(){
   const edit = document.querySelector('a.edit');
 
   edit.addEventListener('click', (e) => {
-  const endpoint = `/blogs/${trashcan.dataset.doc}/edit`;
-
-  fetch(endpoint, {
-    method: 'GET',
-  })
-  .then(response => response.json())
-  .then(data => window.location.href = data.redirect)
-  .catch(err => console.log(err));
+  window.location.href = `/blogs/edit/${edit.dataset.doc}`;
 });
   
 </script>

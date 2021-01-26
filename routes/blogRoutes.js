@@ -5,10 +5,11 @@ const router = express.Router();
 
 router.get('/create', blogController.blog_create_get);
 router.get('/', blogController.blog_index);
+router.get('/:date', blogController.blog_index_bydate);
 router.post('/', blogController.blog_create_post);
-router.get('/:id', blogController.blog_details);
 router.delete('/:id', blogController.blog_delete);
-router.get('/:id/edit', blogController.blog_edit_get );   
-router.put('/:id', blogController.blog_update);
+router.get('/edit/:id/', blogController.blog_edit_get );
+router.patch('/:id', blogController.blog_update);
+
 
 module.exports = router;

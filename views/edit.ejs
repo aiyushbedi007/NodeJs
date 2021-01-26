@@ -6,7 +6,7 @@
 
   <div class="create-blog content">
     <form action="/blogs/<%= blog._id %>" method="POST">
-        <input type="hidden", name="_method", value="PUT">
+        <input type="hidden" name="_method" value="PATCH">
         <label for="title">Enquiry title:</label>
         <input type="text" id="title" name="title" value="<%= blog.title %>" required>
         <label for="snippet">Course Name:</label>

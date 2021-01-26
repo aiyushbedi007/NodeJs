@@ -10,15 +10,17 @@ const blog_index = (req, res) => {
     });
 }
 
-const blog_details = (req, res) => {
-  const id = req.params.id;
-  Blog.findById(id)
+const blog_index_bydate = (req, res) => {
+  const date = req.params.date;
+  timestamp = date+'T00:00:00Z'
+  Blog.find({
+    "createdAt" : { "$gte" : new Date(timestamp) }
+  }).sort({ createdAt: -1 })
     .then(result => {
-      res.render('details', { blog: result, title: 'Blog Details' });
+      res.render('index', { blogs: result, title: 'All blogs' });
     })
     .catch(err => {
       console.log(err);
-      res.render('404', { title: 'Blog not found' });
     });
 }
 
@@ -34,12 +36,13 @@ const blog_edit_get = (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.render('404', { title: 'Enquiry not found' });
+      res.json({ redirect: '/404', title: 'Enquiry not found' });
     });
 }
 
 const blog_create_post = (req, res) => {
   const blog = new Blog(req.body);
+  console.log(req.body);
   blog.save()
     .then(result => {
       res.redirect('/blogs');
@@ -61,14 +64,12 @@ const blog_delete = (req, res) => {
 }
 
 const blog_update = (req, res) => {
-  Blog.findByIdAndUpdate(
-    {id: req.params.id},
-    {title: req.body.title,
-    course: req.body.course,
-    body: req.body.body,      
-  })
+  const id = req.params.id;
+  console.log(id);
+  console.log(req.body);
+  Blog.findByIdAndUpdate(id,{$set:req.body}) 
     .then(result => {
-      res.json({ return: '/blogs'});
+      res.redirect('/blogs');
     })
     .catch(err => {
       console.log(err);
@@ -78,10 +79,10 @@ const blog_update = (req, res) => {
 
 module.exports = {
   blog_index, 
-  blog_details, 
   blog_create_get, 
   blog_create_post, 
   blog_delete,
   blog_edit_get,
-  blog_update
+  blog_update,
+  blog_index_bydate, 
 }
