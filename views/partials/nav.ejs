@@ -1,7 +1,10 @@
 <nav>
   <div class="site-title">
-    <a href="/"><h1>Enquiry Management System</h1></a>
-    <p>Enquiry for listed courses</p>
+    <a href="/"><h2>Enquiry Management System</h2></a>
+    <ul>
+      <li><a href="/blogs">Enquires</a></li>
+      <li><a href="/blogs/create">New Enquiry</a></li>
+    </ul>
   </div>
   <ul>
     <% if (user) { %>
@@ -11,10 +14,5 @@
       <li><a href="/login">Log in</a></li>
       <li><a href="/signup" class="btn">Sign up</a></li>
     <% } %>
-  </ul>
-  <ul>
-    <li><a href="/">Enquires</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/blogs/create">New Enquiry</a></li>
   </ul>
 </nav>
