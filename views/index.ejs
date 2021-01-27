@@ -4,7 +4,7 @@
 <body>
   <%- include("./partials/nav.ejs") %>
 
-  <div class="blogs container content">
+  <div class="enquirys container content">
     <h2>All Enquires</h2>
 
     <form class="search">
@@ -25,18 +25,18 @@
        </tr>  
      </thead>  
      <tbody id='myTable'>
-    <% if (blogs.length > 0) { %>
-      <% blogs.forEach(function(blog,i) { %>
-        <% if (user.role == 'admin' || blog.raisedby === user.email ) { %>
+    <% if (enquirys.length > 0) { %>
+      <% enquirys.forEach(function(enquiry,i) { %>
+        <% if (user.role == 'admin' || enquiry.raisedby === user.email ) { %>
           <tr>
           <td> <%= i+1 %></td>   
-         	<td><%= blog.title %></td>  
-          <td><%= blog.snippet %> </td>  
-          <td><%= blog.body %></td>    
+         	<td><%= enquiry.title %></td>  
+          <td><%= enquiry.snippet %> </td>  
+          <td><%= enquiry.body %></td>    
           <% if (user.role === "admin") { %>
-            <td>  <%= blog.raisedby %>  </td>
-            <td><a class="edit" data-doc="<%= blog._id %>"><img src="/edit.svg" alt="edit icon"></a></td>
-            <td><a class="delete" data-doc="<%= blog._id %>"><img src="/trashcan.svg" alt="delete icon"></a></td>
+            <td>  <%= enquiry.raisedby %>  </td>
+            <td><a class="edit" data-doc="<%= enquiry._id %>"><img src="/edit.svg" alt="edit icon"></a></td>
+            <td><a class="delete" data-doc="<%= enquiry._id %>"><img src="/trashcan.svg" alt="delete icon"></a></td>
           <% } %>        
         </tr>
        <% }%>
@@ -68,7 +68,7 @@ $(document).ready(function(){
   const trashcan = document.querySelector('a.delete');
 
   trashcan.addEventListener('click', (e) => {
-    const endpoint = `/blogs/${trashcan.dataset.doc}`;
+    const endpoint = `/enquirys/${trashcan.dataset.doc}`;
 
     fetch(endpoint, {
       method: 'DELETE',
@@ -81,7 +81,7 @@ $(document).ready(function(){
   const edit = document.querySelector('a.edit');
 
   edit.addEventListener('click', (e) => {
-  window.location.href = `/blogs/edit/${edit.dataset.doc}`;
+  window.location.href = `/enquirys/edit/${edit.dataset.doc}`;
 });
   
 </script>

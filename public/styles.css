@@ -64,7 +64,7 @@ h3{
 }
 
 /* index styles */
-.blogs a:hover h3{
+.enquirys a:hover h3{
   color: #dc143c;
 }
 
@@ -81,7 +81,7 @@ h3{
 
 
 /* create styles */
-.create-blog form{
+.create-enquiry form{
   max-width: 400px;
   margin: 0 auto;
   padding: 30px;
@@ -90,8 +90,8 @@ h3{
   background: #ffffff;
 
 }
-.create-blog input,
-.create-blog textarea{
+.create-enquiry input,
+.create-enquiry textarea{
   display: block;
   width: 100%;
   margin: 10px 0;
@@ -100,14 +100,14 @@ h3{
   border: 1px solid #ddd;
   font-size: 1em;    
 }
-.create-blog label{
+.create-enquiry label{
   display: block;
   margin: 20px 0 10px;
 }
 textarea{
   height: 120px;
 }
-.create-blog button{
+.create-enquiry button{
   margin-top: 30px;
   border-radius: 36px;
   background: #dc143c;
