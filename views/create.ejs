@@ -12,6 +12,7 @@
       <input type="text" id="snippet" name="snippet" required>
       <label for="body">Your Enquiry:</label>
       <textarea id="body" name="body" required></textarea>
+      <input type="hidden" name="raisedby" value="<%= user.email %>">
       <button>Submit</button>
     </form>
   </div>
