@@ -2,7 +2,14 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
+   //const token = req.cookies.jwt;
+   //console.log(req.rawHeaders);  
+
+    var index = req.rawHeaders.indexOf('x-access-token');
+    const token = req.rawHeaders[index+1];
+    //console.log(req.rawHeaders);
+    console.log(token);
+
 
   // check json web token exists & is verified
   if (token) {

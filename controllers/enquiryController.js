@@ -3,7 +3,8 @@ const Enquiry = require('../models/enquiry');
 const enquiry_index = (req, res) => {
   Enquiry.find().sort({ createdAt: -1 })
     .then(result => {
-      res.render('index', { enquirys: result, title: 'All enquirys' });
+      // res.render('index', { enquirys: result, title: 'All enquirys' });
+      res.json(result);
     })
     .catch(err => {
       console.log(err);
@@ -17,7 +18,8 @@ const enquiry_index_bydate = (req, res) => {
     "createdAt" : { "$gte" : new Date(timestamp) }
   }).sort({ createdAt: -1 })
     .then(result => {
-      res.render('index', { enquirys: result, title: 'All enquirys' });
+      // res.render('index', { enquirys: result, title: 'All enquirys' });
+      res.json(result);
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +34,8 @@ const enquiry_edit_get = (req, res) => {
   const id = req.params.id;
   Enquiry.findById(id)
     .then(result => {
-      res.render('edit', { enquiry: result, title: 'Edit Enquiry' });
+      // res.render('edit', { enquiry: result, title: 'Edit Enquiry' });
+      res.json(result);
     })
     .catch(err => {
       console.log(err);
@@ -56,7 +59,8 @@ const enquiry_delete = (req, res) => {
   const id = req.params.id;
   Enquiry.findByIdAndDelete(id)
     .then(result => {
-      res.json({ redirect: '/enquirys' });
+      //res.json({ redirect: '/enquirys' });
+      res.json(result);
     })
     .catch(err => {
       console.log(err);
@@ -69,7 +73,8 @@ const enquiry_update = (req, res) => {
   console.log(req.body);
   Enquiry.findByIdAndUpdate(id,{$set:req.body}) 
     .then(result => {
-      res.redirect('/enquirys');
+      //res.redirect('/enquirys');
+      res.json(result);
     })
     .catch(err => {
       console.log(err);
